@@ -7,11 +7,22 @@
 
 #import <Foundation/Foundation.h>
 
+////////////////////////////////////////////////////////////////////////////////
+// this is the delegte that your calling object can implement
+// these get called when the animation starts and ends
+
 @protocol BLAnimationControllerDelegate<NSObject>
 - (void) BL_Animation_WillStart:(NSString *)animationID context:(void *)context;
 - (void) BL_Animation_DidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;
 @end
 
+
+////////////////////////////////////////////////////////////////////////////////
+// this is the delegate that your animatable object should implement
+// it handles the things you would expect. start/process/complete
+// "process" is called incrementally, while the animation progresses. 
+//  You are guaranteed that "process" is called at 0% and 100% of animation progression.
+//  intermediate calls/interval are determined by the Interval defined in the code.
 
 @protocol BLAnimationWorkDelegate<NSObject>
 // they will be called in a background thread, so be aware of that.
@@ -22,6 +33,9 @@
 - (float) BL_AnimationWork_ValueForTime:(float)t forCurve:(int)c;
 @end
 
+
+////////////////////////////////////////////////////////////////////////////////
+// implementation of the class itself...
 
 @interface BLAnimationController : NSObject //<BLAnimationsDelegate>
 {
@@ -59,29 +73,31 @@
 
 // the interface for the animations.  don't breathe these.
 // based on UIView.h
-- (void)BL_beginAnimations:(NSString *)animationID context:(void *)context;  // additional context info passed to will start/did stop selectors. begin/commit can be nested
+- (void)BL_beginAnimations:(NSString *)animationID context:(void *)context;  // additional context info passed to will start/did stop selectors. 
 - (void)BL_commitAnimations;                                                 // starts up any animations when the top level animation is commited
 
-// no getters. if called outside animation block, these setters have no effect.
-- (void)BL_setAnimationDelegate:(id<BLAnimationControllerDelegate>)delegate;			// default = self
-- (void)BL_setAnimationWorkDelegate:(id<BLAnimationWorkDelegate>)delegate;			// default = self
+- (void)BL_setAnimationDelegate:(id<BLAnimationControllerDelegate>)delegate;			// default = nil
+- (void)BL_setAnimationWorkDelegate:(id<BLAnimationWorkDelegate>)delegate;			// default = nil
+
 - (void)BL_setAnimationDuration:(NSTimeInterval)duration;              // default = 0.2
 - (void)BL_setAnimationDelay:(NSTimeInterval)delay;                    // default = 0.0
 - (void)BL_setAnimationStartDate:(NSDate *)startDate;                  // default = now ([NSDate date])
+
 - (void)BL_setAnimationCurve:(UIViewAnimationCurve)curve;              // default = UIViewAnimationCurveEaseInOut
+
 - (void)BL_setAnimationRepeatCount:(float)repeatCount;                 // default = 0.0.  May be fractional
 - (void)BL_setAnimationRepeatAutoreverses:(BOOL)repeatAutoreverses;    // default = NO. used if repeat count is non-zero
-- (void)BL_setAnimationBeginsFromCurrentState:(BOOL)fromCurrentState;  // default = NO. If YES, the current view position is always used for new animations -- allowing animations to "pile up" on each other. Otherwise, the last end state is used for the animation (the default).
 
-- (void)BL_setAnimationTransition:(UIViewAnimationTransition)transition forView:(UIView *)view cache:(BOOL)cache;  // current limitation - only one per begin/commit block
+// not implemented yet...
+- (void)BL_setAnimationBeginsFromCurrentState:(BOOL)fromCurrentState;
+- (void)BL_setAnimationTransition:(UIViewAnimationTransition)transition forView:(UIView *)view cache:(BOOL)cache; 
 
+// enabled accessor.
 - (void)BL_setAnimationsEnabled:(BOOL)enabled;                         // ignore any attribute changes while set.
 - (BOOL)BL_areAnimationsEnabled;
 
 // and some new things
 - (void)BL_setCustomAnimationCurve:(int)curveId;					// curveID passed in to the WORK callback
-																	// your curve IDs should start at 1
-#define BL_AnimationCurveInternal	(0)		/* the default */
-
-- (void)BL_setPollInterval:(float)interval;
+#define BL_AnimationCurveInternal	(0)		/* the default, additionals should be >0 */
+- (void)BL_setPollInterval:(float)interval;		// number of ticks per second that the work-process message gets called
 @end
