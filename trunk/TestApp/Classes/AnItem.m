@@ -15,7 +15,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
-w    }
+    }
     return self;
 }
 
