@@ -12,6 +12,7 @@
 // these get called when the animation starts and ends
 
 @protocol BLAnimationControllerDelegate<NSObject>
+@optional
 - (void) BL_Animation_WillStart:(NSString *)animationID context:(void *)context;
 - (void) BL_Animation_DidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;
 @end
@@ -37,7 +38,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // implementation of the class itself...
 
-@interface BLAnimationController : NSObject //<BLAnimationsDelegate>
+@interface BLAnimationController : NSObject <BLAnimationWorkDelegate>
 {
 	bool BL_AnimationsEnabled:YES;
 	void * BL_context;

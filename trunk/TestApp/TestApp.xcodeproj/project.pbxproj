@@ -15,6 +15,7 @@
 		2899E5220DE3E06400AC0155 /* TestAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* TestAppViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* TestAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* TestAppViewController.m */; };
+		5E7067B2108F9159003CBD78 /* BLMovingPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7067B1108F9159003CBD78 /* BLMovingPoint.m */; };
 		5EDEB3941086D99A00FEF34B /* BLAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDEB3931086D99A00FEF34B /* BLAnimationController.m */; };
 		5EDEB39A1086D9D400FEF34B /* AnItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDEB3991086D9D400FEF34B /* AnItem.m */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,8 @@
 		28D7ACF70DDB3853001CB0EB /* TestAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAppViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* TestApp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestApp_Prefix.pch; sourceTree = "<group>"; };
+		5E7067B0108F9159003CBD78 /* BLMovingPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLMovingPoint.h; path = Classes/BLMovingPoint.h; sourceTree = "<group>"; };
+		5E7067B1108F9159003CBD78 /* BLMovingPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLMovingPoint.m; path = Classes/BLMovingPoint.m; sourceTree = "<group>"; };
 		5EDEB3921086D99A00FEF34B /* BLAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLAnimationController.h; path = Classes/BLAnimationController.h; sourceTree = "<group>"; };
 		5EDEB3931086D99A00FEF34B /* BLAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLAnimationController.m; path = Classes/BLAnimationController.m; sourceTree = "<group>"; };
 		5EDEB3981086D9D400FEF34B /* AnItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnItem.h; path = Classes/AnItem.h; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 			children = (
 				5EDEB3921086D99A00FEF34B /* BLAnimationController.h */,
 				5EDEB3931086D99A00FEF34B /* BLAnimationController.m */,
+				5E7067B0108F9159003CBD78 /* BLMovingPoint.h */,
+				5E7067B1108F9159003CBD78 /* BLMovingPoint.m */,
 				5EDEB3981086D9D400FEF34B /* AnItem.h */,
 				5EDEB3991086D9D400FEF34B /* AnItem.m */,
 			);
@@ -184,6 +189,7 @@
 				28D7ACF80DDB3853001CB0EB /* TestAppViewController.m in Sources */,
 				5EDEB3941086D99A00FEF34B /* BLAnimationController.m in Sources */,
 				5EDEB39A1086D9D400FEF34B /* AnItem.m in Sources */,
+				5E7067B2108F9159003CBD78 /* BLMovingPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
