@@ -35,22 +35,22 @@
 }
 
 
-#ifdef NEVER_EXAMPLE
 #pragma mark -
 #pragma mark User - Runtime methods
 
-- (void) BL_Work_Starting:(NSString *)animationID context:(void *)ctx
+- (void) BL_AnimationWork_Starting:(NSString *)animationID context:(void *)ctx
 {
 }
 
-- (void) BL_Work_Process:(NSString *)animationID context:(void *)ctx percentComplete:(double)pct
+- (void) BL_AnimationWork_Process:(NSString *)animationID context:(void *)ctx percentThisCycle:(double)ptc overallPosition:(double)op
 {
 }
 
-- (void) BL_Work_Completing:(NSString *)animationID context:(void *)ctx
+- (void) BL_AnimationWork_Completing:(NSString *)animationID context:(void *)ctx
 {
 }
 
+#ifdef NEVER
 #pragma mark -
 #pragma mark User - Curve computations
 - (float) BL_Work_ValueForTime:(float)t forCurve:(int)c
@@ -280,14 +280,14 @@
 - (void) BL_ResetDefaults
 {
 	BL_animationDelegate = nil;
-	BL_animationWorkDelegate = nil;
+	BL_animationWorkDelegate = self;
 	BL_pollInterval = 0.1;
 	BL_duration = 0.2;
 	BL_delay = 0.0;
 	BL_startDate = nil;
 	BL_animationCurve = UIViewAnimationCurveEaseInOut;
 	BL_externalCurve = 0;
-	BL_repeatCount = 0.0;
+	BL_repeatCount = 1.0;
 	BL_CurrentIteration = 0;
 	BL_autoReverse = NO;
 	BL_beginsFromCurrentState = NO;
@@ -297,7 +297,6 @@
 
 - (void)BL_beginAnimations:(NSString *)animationID context:(void *)context
 {
-	NSLog( @"Begin" );
 	if( !BL_animationsEnabled ) return;
 	
 	[self BL_ResetDefaults];
@@ -391,6 +390,7 @@
 	if( !BL_animationsEnabled ) return;
 	if( !BL_settingUp ) return;
 	
+	if( repeatCount == 0.0 ) repeatCount = 1.0;
 	BL_repeatCount = repeatCount;
 }
 

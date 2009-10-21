@@ -84,6 +84,7 @@
 
 - (IBAction) Press0:(id)obj
 {
+	// this uses an explicitly external instance of the animation controller
 	if( blac0 == nil ) blac0 = [[BLAnimationController alloc]init];
 
 	NSLog( @"Pressed A" );

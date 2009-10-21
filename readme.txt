@@ -143,6 +143,8 @@ the explanation of what they do in this implementation
 
 	(New/Different than UIView) This sets the worker delegate
 	as defined above.  The worker is the object d'animation.
+	Default is 'self'.  This makes it possible for your object to
+	handle its own animations.
 
 - (void)BL_setAnimationDuration:(NSTimeInterval)duration
 
